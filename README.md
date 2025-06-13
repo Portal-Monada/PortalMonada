@@ -16,6 +16,7 @@ DATABASE_USERNAME=dbuser
 DATABASE_PASSWORD=dbpassword
 DATABASE_HOST=db
 DATABASE_PORT=5432
+DJANGO_LOGLEVEL=INFO
 ```
 
 Para construir a aplicação executamos o seguinte comando:
