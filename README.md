@@ -44,3 +44,4 @@ Acessando o shell da aplicação web:
 docker-compose exec django-web bash
 docker exec -it portalmonada sh
 ```
+
