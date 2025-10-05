@@ -1,0 +1,1984 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mônada - Portal de Saúde Mental e Comportamentos</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!--<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />-->
+    <link rel="stylesheet" href="{% static 'css/partials/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/partials/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+</head>
+<body>
+    {% include 'header.html' %}
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    {% include 'footer.html' %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+ <script>
+        // Dados das notícias (simulando um banco de dados)
+        const newsData = [
+            {
+                id: 1,
+                title: "Novo estudo revela impacto da pandemia na saúde mental dos jovens",
+                excerpt: "Pesquisa nacional mostra aumento de 40% nos casos de ansiedade e depressão entre adolescentes nos últimos 2 anos...",
+                content: `
+                    <h2>Impacto da Pandemia na Saúde Mental Juvenil</h2>
+                    <p>Um estudo abrangente realizado em todo o país revelou que os casos de ansiedade e depressão entre adolescentes aumentaram significativamente durante a pandemia. Os pesquisadores analisaram dados de mais de 10.000 jovens entre 12 e 18 anos.</p>
+
+                    <h3>Principais Descobertas</h3>
+                    <ul>
+                        <li>Aumento de 40% nos sintomas de ansiedade</li>
+                        <li>35% mais casos de depressão moderada a grave</li>
+                        <li>60% relataram piora na qualidade do sono</li>
+                        <li>45% sentiram aumento da solidão</li>
+                    </ul>
+
+                    <p>Segundo a Dra. Ana Silva, coordenadora da pesquisa: "Os dados mostram a urgência de políticas públicas voltadas para a saúde mental dos jovens. Precisamos agir agora para prevenir consequências a longo prazo."</p>
+
+                    <p>O estudo também identificou fatores protetores, como a manutenção de rotinas, atividades físicas regulares e suporte familiar consistente.</p>
+                `,
+                slug: "impacto-pandemia-saude-mental-jovens",
+                image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                date: "15/06/2023",
+                category: "research",
+                readTime: "5 min leitura",
+                views: "1.2k"
+            },
+            {
+                id: 2,
+                title: "Workshop gratuito sobre prevenção ao uso de álcool nas escolas",
+                excerpt: "Programa educacional será realizado em 15 cidades brasileiras com foco em estratégias de prevenção primária...",
+                content: `
+                    <h2>Workshop Nacional de Prevenção ao Álcool</h2>
+                    <p>O Ministério da Saúde em parceria com instituições de ensino promove workshop gratuito sobre prevenção ao uso de álcool entre adolescentes. O evento ocorrerá em 15 capitais brasileiras durante o mês de junho.</p>
+
+                    <h3>Conteúdo Programático</h3>
+                    <ul>
+                        <li>Estratégias de prevenção primária</li>
+                        <li>Como abordar o tema em sala de aula</li>
+                        <li>Identificação de sinais precoces</li>
+                        <li>O papel da família na prevenção</li>
+                    </ul>
+
+                    <p>As inscrições podem ser feitas pelo site do Ministério da Saúde ou nas secretarias das escolas participantes.</p>
+                `,
+                slug: "workshop-prevencao-alcool-escolas",
+                image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                date: "10/06/2023",
+                category: "events",
+                readTime: "3 min leitura",
+                views: "890"
+            },
+            {
+                id: 3,
+                title: "Terapia mostra resultados promissores no tratamento de dependência química",
+                excerpt: "Método combina terapia cognitivo-comportamental com realidade virtual e apresenta taxa de sucesso de 68% em estudo preliminar...",
+                content: `
+                    <h2>Terapia Combinada para Dependência Química</h2>
+                    <p>Pesquisadores da Universidade de São Paulo desenvolveram um método que combina terapia cognitivo-comportamental com realidade virtual para tratamento de dependência química.</p>
+
+                    <h3>Resultados do Estudo</h3>
+                    <p>Em estudo preliminar com 120 pacientes, a nova técnica apresentou:</p>
+                    <ul>
+                        <li>68% de taxa de sucesso na abstinência</li>
+                        <li>Redução de 75% nos sintomas de fissura</li>
+                        <li>Melhora significativa na qualidade de vida</li>
+                    </ul>
+
+                    <p>A técnica está em fase de testes ampliados antes de ser disponibilizada no SUS.</p>
+                `,
+                slug: "terapia-inovadora-dependencia-quimica",
+                image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                date: "05/06/2023",
+                category: "treatment",
+                readTime: "7 min leitura",
+                views: "2.4k"
+            },
+            {
+                id: 4,
+                title: "Como identificar sinais de dependência de jogos virtuais em adolescentes",
+                excerpt: "Especialista lista os principais sinais de alerta e estratégias para os pais lidarem com o uso excessivo de jogos eletrônicos...",
+                content: `
+                    <h2>Identificando o Uso Problemático de Jogos</h2>
+                    <p>Especialistas alertam para os sinais de dependência de jogos virtuais em adolescentes, problema reconhecido pela OMS como transtorno mental.</p>
+
+                    <h3>Sinais de Alerta</h3>
+                    <ul>
+                        <li>Preocupação excessiva com jogos</li>
+                        <li>Irritabilidade quando não está jogando</li>
+                        <li>Queda no rendimento escolar</li>
+                        <li>Isolamento social</li>
+                        <li>Alterações no padrão de sono</li>
+                    </ul>
+
+                    <p>Psicólogos recomendam estabelecer limites claros e buscar ajuda profissional quando necessário.</p>
+                `,
+                slug: "sinais-dependencia-jogos-virtuais-adolescentes",
+                image: "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                date: "28/05/2023",
+                category: "gaming",
+                readTime: "4 min leitura",
+                views: "1.8k"
+            },
+            {
+                id: 5,
+                title: "Guia: Como apoiar um familiar com problemas de saúde mental",
+                excerpt: "Psicóloga explica estratégias para oferecer suporte adequado sem comprometer a própria saúde emocional...",
+                content: `
+                    <h2>Apoiando Familiares com Saúde Mental</h2>
+                    <p>Especialista explica como oferecer suporte adequado a familiares com problemas psicológicos sem comprometer a própria saúde emocional.</p>
+
+                    <h3>Principais Recomendações</h3>
+                    <ul>
+                        <li>Mantenha a comunicação aberta e sem julgamentos</li>
+                        <li>Incentive a busca por ajuda profissional</li>
+                        <li>Estabeleça limites saudáveis</li>
+                        <li>Cuide da sua própria saúde mental</li>
+                        <li>Participe de grupos de apoio para familiares</li>
+                    </ul>
+
+                    <p>Lembre-se: você não precisa ter todas as respostas, apenas estar presente.</p>
+                `,
+                slug: "guia-apoio-familiar-saude-mental",
+                image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                date: "20/05/2023",
+                category: "mental-health",
+                readTime: "6 min leitura",
+                views: "3.1k"
+            },
+            {
+                id: 6,
+                title: "Novas políticas públicas para redução de danos são aprovadas em 5 estados",
+                excerpt: "Medidas incluem ampliação de centros de atendimento e programas de educação comunitária sobre uso de substâncias...",
+                content: `
+                    <h2>Ampliação das Políticas de Redução de Danos</h2>
+                    <p>Cinco estados brasileiros aprovaram novas políticas públicas para redução de danos relacionados ao uso de substâncias psicoativas.</p>
+
+                    <h3>Medidas Implementadas</h3>
+                    <ul>
+                        <li>Ampliação de CAPS AD em regiões carentes</li>
+                        <li>Programas de educação comunitária</li>
+                        <li>Treinamento de agentes de saúde</li>
+                        <li>Distribuição de kits de redução de danos</li>
+                        <li>Criação de centros de acolhimento noturno</li>
+                    </ul>
+
+                    <p>As medidas buscam abordar o problema de forma humanizada e baseada em evidências científicas.</p>
+                `,
+                slug: "politicas-publicas-reducao-danos",
+                image: "https://images.unsplash.com/photo-1576086213369-97a306d36557?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                date: "12/05/2023",
+                category: "prevention",
+                readTime: "5 min leitura",
+                views: "1.5k"
+            },
+            {
+                id: 7,
+                title: "Programa de prevenção ao uso de drogas tem resultados positivos",
+                excerpt: "Iniciativa em São Paulo reduziu em 30% o uso experimental de substâncias entre adolescentes...",
+                content: `
+                    <h2>Programa Educacional de Prevenção</h2>
+                    <p>Iniciativa piloto em escolas de São Paulo reduziu em 30% o uso experimental de substâncias entre adolescentes.</p>
+
+                    <h3>Metodologia do Programa</h3>
+                    <ul>
+                        <li>Abordagem científica e não moralista</li>
+                        <li>Envolvimento de alunos como multiplicadores</li>
+                        <li>Atividades interativas e dinâmicas</li>
+                        <li>Envolvimento da comunidade escolar</li>
+                    </ul>
+
+                    <p>O programa será expandido para outras 200 escolas no próximo ano letivo.</p>
+                `,
+                slug: "programa-prevencao-drogas-escolas-resultados",
+                image: "https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                date: "08/05/2023",
+                category: "prevention",
+                readTime: "4 min leitura",
+                views: "1.1k"
+            },
+            {
+                id: 8,
+                title: "Nova técnica de meditação auxilia no tratamento da ansiedade",
+                excerpt: "Estudo mostra que método reduz sintomas em 60% dos participantes após 8 semanas...",
+                content: `
+                    <h2>Meditação para Controle da Ansiedade</h2>
+                    <p>Pesquisa demonstra eficácia de nova técnica de meditação no tratamento de transtornos de ansiedade.</p>
+
+                    <h3>Benefícios Comprovados</h3>
+                    <ul>
+                        <li>Redução de 60% nos sintomas de ansiedade</li>
+                        <li>Melhora na qualidade do sono</li>
+                        <li>Diminuição da frequência de crises</li>
+                        <li>Aumento da capacidade de concentração</li>
+                    </ul>
+
+                    <p>A técnica combina elementos de mindfulness com respiração controlada e pode ser praticada em casa após treinamento inicial.</p>
+                `,
+                slug: "tecnica-meditacao-tratamento-ansiedade",
+                image: "https://images.unsplash.com/photo-1545205597-3d9d02c29597?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                date: "02/05/2023",
+                category: "treatment",
+                readTime: "5 min leitura",
+                views: "2.7k"
+            }
+        ];
+
+        // Variáveis para controle de estado
+        let currentPage = 1;
+        const newsPerPage = 6;
+        let filteredNews = [...newsData];
+        let currentCategory = 'all';
+        let currentSearchTerm = '';
+        let currentSort = 'newest';
+
+        // Função para renderizar notícias
+        function renderNews(newsToRender, page = 1) {
+            const newsContainer = document.getElementById('newsContainer');
+            newsContainer.innerHTML = '';
+
+            // Calcular itens para a página atual
+            const startIndex = (page - 1) * newsPerPage;
+            const endIndex = startIndex + newsPerPage;
+            const paginatedNews = newsToRender.slice(startIndex, endIndex);
+
+            if (paginatedNews.length === 0) {
+                newsContainer.innerHTML = `
+                    <div class="no-news-found">
+                        <i class="fas fa-newspaper fa-3x mb-3" style="color: var(--accent-color);"></i>
+                        <h4>Nenhuma notícia encontrada</h4>
+                        <p>Tente ajustar seus filtros ou termos de busca</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Renderizar notícias
+            paginatedNews.forEach(news => {
+                const categoryNames = {
+                    'prevention': 'Prevenção',
+                    'treatment': 'Tratamento',
+                    'research': 'Pesquisa',
+                    'events': 'Eventos',
+                    'alcohol': 'Álcool',
+                    'drugs': 'Drogas',
+                    'gaming': 'Jogos',
+                    'mental-health': 'Saúde Mental'
+                };
+
+                const newsElement = `
+                    <div class="col-lg-4 col-md-6">
+                        <div class="news-card">
+                            <img src="${news.image}" class="news-img" alt="${news.title}">
+                            <span class="news-date">${news.date}</span>
+                            <span class="news-category">${categoryNames[news.category] || news.category}</span>
+                            <div class="news-body">
+                                <h3 class="news-title">${news.title}</h3>
+                                <p class="news-excerpt">${news.excerpt}</p>
+                                <div class="news-meta">
+                                    <span><i class="fas fa-clock"></i> ${news.readTime}</span>
+                                    <span class="ms-3"><i class="fas fa-eye"></i> ${news.views}</span>
+                                    <a href="noticia.html?id=${news.id}" class="btn btn-primary-custom btn-news">
+                                        Ler mais <i class="fas fa-arrow-right ms-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                newsContainer.innerHTML += newsElement;
+            });
+
+            // Renderizar paginação
+            renderPagination(newsToRender.length, page);
+
+            // Animar as notícias
+            animateNewsItems();
+        }
+
+        // Função para renderizar paginação
+        function renderPagination(totalItems, currentPage) {
+            const totalPages = Math.ceil(totalItems / newsPerPage);
+            const pagination = document.getElementById('newsPagination');
+            pagination.innerHTML = '';
+
+            if (totalPages <= 1) return;
+
+            // Botão Anterior
+            pagination.innerHTML += `
+                <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+                    <a class="page-link" href="#" onclick="return changePage(${currentPage - 1}, event)">
+                        <i class="fas fa-angle-left"></i>
+                    </a>
+                </li>
+            `;
+
+            // Páginas
+            const maxVisiblePages = 5;
+            let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+            let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+            if (endPage - startPage + 1 < maxVisiblePages) {
+                startPage = Math.max(1, endPage - maxVisiblePages + 1);
+            }
+
+            if (startPage > 1) {
+                pagination.innerHTML += `
+                    <li class="page-item">
+                        <a class="page-link" href="#" onclick="return changePage(1, event)">1</a>
+                    </li>
+                    ${startPage > 2 ? '<li class="page-item disabled"><span class="page-link">...</span></li>' : ''}
+                `;
+            }
+
+            for (let i = startPage; i <= endPage; i++) {
+                pagination.innerHTML += `
+                    <li class="page-item ${i === currentPage ? 'active' : ''}">
+                        <a class="page-link" href="#" onclick="return changePage(${i}, event)">${i}</a>
+                    </li>
+                `;
+            }
+
+            if (endPage < totalPages) {
+                pagination.innerHTML += `
+                    ${endPage < totalPages - 1 ? '<li class="page-item disabled"><span class="page-link">...</span></li>' : ''}
+                    <li class="page-item">
+                        <a class="page-link" href="#" onclick="return changePage(${totalPages}, event)">${totalPages}</a>
+                    </li>
+                `;
+            }
+
+            // Botão Próximo
+            pagination.innerHTML += `
+                <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+                    <a class="page-link" href="#" onclick="return changePage(${currentPage + 1}, event)">
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                </li>
+            `;
+        }
+
+        // Função para mudar de página
+        function changePage(page, event) {
+            if (event) {
+                event.preventDefault(); // Previne o comportamento padrão do link
+            }
+            currentPage = page;
+            applyFilters();
+            // Opcional: Scroll suave até a seção de notícias
+            const newsSection = document.getElementById('news');
+            if (newsSection && page !== 1) { // Só scroll se não for a primeira página
+                newsSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        // Função para filtrar e ordenar notícias
+        function filterAndSortNews() {
+            let result = [...newsData];
+
+            // Aplicar filtro de categoria
+            if (currentCategory !== 'all') {
+                result = result.filter(news => news.category === currentCategory);
+            }
+
+            // Aplicar busca
+            if (currentSearchTerm) {
+                const term = currentSearchTerm.toLowerCase();
+                result = result.filter(news =>
+                    news.title.toLowerCase().includes(term) ||
+                    news.excerpt.toLowerCase().includes(term)
+                );
+            }
+
+            // Aplicar ordenação
+            switch(currentSort) {
+                case 'newest':
+                    result.sort((a, b) => new Date(b.date.split('/').reverse().join('-')) - new Date(a.date.split('/').reverse().join('-')));
+                    break;
+                case 'oldest':
+                    result.sort((a, b) => new Date(a.date.split('/').reverse().join('-')) - new Date(b.date.split('/').reverse().join('-')));
+                    break;
+                case 'popular':
+                    result.sort((a, b) => parseInt(b.views.replace(/[^\d]/g, '')) - parseInt(a.views.replace(/[^\d]/g, '')));
+                    break;
+            }
+
+            filteredNews = result;
+            return result;
+        }
+
+        // Função para aplicar todos os filtros e renderizar
+        function applyFilters() {
+            const filtered = filterAndSortNews();
+            renderNews(filtered, currentPage);
+        }
+
+        // Função para animar itens de notícia
+        function animateNewsItems() {
+            const newsItems = document.querySelectorAll('#newsContainer .col-lg-4');
+
+            newsItems.forEach((item, index) => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(20px)';
+                item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        }
+
+        // Dados da galeria
+        const galleryData = [
+            {
+                src: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                caption: "Workshop sobre saúde mental"
+            },
+            {
+                src: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                caption: "Terapia em grupo"
+            },
+            {
+                src: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                caption: "Atividades relaxantes"
+            },
+            {
+                src: "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                caption: "Equipe de profissionais"
+            },
+            {
+                src: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                caption: "Sessão de aconselhamento"
+            },
+            {
+                src: "https://images.unsplash.com/photo-1576086213369-97a306d36557?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                caption: "Ambiente acolhedor"
+            },
+            {
+                src: "https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                caption: "Atividades educativas"
+            },
+            {
+                src: "https://images.unsplash.com/photo-1545205597-3d9d02c29597?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                caption: "Momento de relaxamento"
+            }
+        ];
+
+        const imagesPerPage = 4; // Número de imagens por página
+        let currentGalleryPage = 1;
+        let totalGalleryPages = 1;
+
+        // Função para renderizar a galeria
+        function renderGallery(page = 1) {
+            const galleryContainer = document.getElementById('galleryContainer');
+            galleryContainer.innerHTML = '';
+
+            // Calcular itens para a página atual
+            const startIndex = (page - 1) * imagesPerPage;
+            const endIndex = startIndex + imagesPerPage;
+            const paginatedImages = galleryData.slice(startIndex, endIndex);
+
+            // Renderizar imagens
+            paginatedImages.forEach((item, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item slide-in-left';
+                galleryItem.style.animationDelay = `${index * 0.1}s`;
+                galleryItem.innerHTML = `
+                    <img src="${item.src}" alt="${item.caption}" class="gallery-img" data-index="${startIndex + index}">
+                `;
+                galleryContainer.appendChild(galleryItem);
+            });
+
+            // Configurar eventos dos itens da galeria
+            setupGalleryEvents();
+
+            // Atualizar paginação
+            renderGalleryPagination();
+        }
+
+        function renderGalleryPagination() {
+            totalGalleryPages = Math.ceil(galleryData.length / imagesPerPage);
+            const pagination = document.getElementById('galleryPagination');
+            pagination.innerHTML = '';
+
+            if (totalGalleryPages <= 1) return;
+
+            // Botão Anterior
+            pagination.innerHTML += `
+                <li class="page-item ${currentGalleryPage === 1 ? 'disabled' : ''}">
+                    <a class="page-link" href="#" onclick="changeGalleryPage(${currentGalleryPage - 1}, event)">
+                        <i class="fas fa-angle-left"></i>
+                    </a>
+                </li>
+            `;
+
+            // Páginas
+            const maxVisiblePages = 5;
+            let startPage = Math.max(1, currentGalleryPage - Math.floor(maxVisiblePages / 2));
+            let endPage = Math.min(totalGalleryPages, startPage + maxVisiblePages - 1);
+
+            if (endPage - startPage + 1 < maxVisiblePages) {
+                startPage = Math.max(1, endPage - maxVisiblePages + 1);
+            }
+
+            if (startPage > 1) {
+                pagination.innerHTML += `
+                    <li class="page-item">
+                        <a class="page-link" href="#" onclick="return changeGalleryPage(1, event)">1</a>
+                    </li>
+                    ${startPage > 2 ? '<li class="page-item disabled"><span class="page-link">...</span></li>' : ''}
+                `;
+            }
+
+            for (let i = startPage; i <= endPage; i++) {
+                pagination.innerHTML += `
+                    <li class="page-item ${i === currentGalleryPage ? 'active' : ''}">
+                        <a class="page-link" href="#" onclick="return changeGalleryPage(${i}, event)">${i}</a>
+                    </li>
+                `;
+            }
+
+            if (endPage < totalGalleryPages) {
+                pagination.innerHTML += `
+                    ${endPage < totalGalleryPages - 1 ? '<li class="page-item disabled"><span class="page-link">...</span></li>' : ''}
+                    <li class="page-item">
+                        <a class="page-link" href="#" onclick="return changeGalleryPage(${totalGalleryPages}, event)">${totalGalleryPages}</a>
+                    </li>
+                `;
+            }
+
+            // Botão Próximo
+            pagination.innerHTML += `
+                <li class="page-item ${currentGalleryPage === totalGalleryPages ? 'disabled' : ''}">
+                    <a class="page-link" href="#" onclick="return changeGalleryPage(${currentGalleryPage + 1}, event)">
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                </li>
+            `;
+        }
+
+        function changeGalleryPage(page, event) {
+            if (event) {
+                event.preventDefault(); // Previne o comportamento padrão do link
+            }
+            currentGalleryPage = page;
+            renderGallery(page);
+
+            // Scroll suave até a galeria
+            const gallerySection = document.getElementById('gallery');
+            if (gallerySection && page !== 1) { // Só scroll se não for a primeira página
+                gallerySection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        // Função para configurar eventos da galeria
+        function setupGalleryEvents() {
+            const galleryImages = document.querySelectorAll('.gallery-img');
+            const modal = document.getElementById('galleryModal');
+            const modalImg = document.getElementById('modalImage');
+            const modalCaption = document.getElementById('modalCaption');
+            const modalClose = document.querySelector('.modal-close');
+
+            galleryImages.forEach(img => {
+                img.addEventListener('click', function() {
+                    const index = this.getAttribute('data-index');
+                    const imgElement = new Image();
+
+                    imgElement.onload = function() {
+                        // Calcula a proporção da imagem
+                        const ratio = this.width / this.height;
+
+                        // Carrega a imagem no modal
+                        modalImg.src = this.src;
+                        modalImg.style.aspectRatio = ratio;
+                        modalCaption.textContent = galleryData[index].caption;
+                        modal.style.display = 'flex';
+                        document.body.style.overflow = 'hidden';
+                    };
+
+                    imgElement.src = galleryData[index].src;
+                });
+            });
+
+            // Fechar modal ao clicar no X
+            modalClose.addEventListener('click', function() {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+
+            // Fechar modal ao clicar fora da imagem
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Fechar com ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.style.display === 'flex') {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        }
+
+        // Dados simulados
+        const servicosData = [
+            {
+                id: 1,
+                nome: "CAPS AD III - Centro",
+                tipo: "caps",
+                especialidade: "dependencia-quimica",
+                endereco: "Rua Exemplo, 123 - Centro, São Paulo/SP",
+                telefone: "(11) 1234-5678",
+                horario: "Seg-Sex: 8h-18h",
+                lat: -23.5505,
+                lng: -46.6333
+            },
+            {
+                id: 2,
+                nome: "Clínica Esperança",
+                tipo: "clinica",
+                especialidade: "saude-mental",
+                endereco: "Av. Saúde Mental, 456 - Vila Mariana, São Paulo/SP",
+                telefone: "(11) 9876-5432",
+                horario: "24 horas",
+                lat: -23.5581,
+                lng: -46.6498
+            },
+            {
+                id: 3,
+                nome: "CAPS Infantil Luz do Amanhã",
+                tipo: "caps",
+                especialidade: "infanto-juvenil",
+                endereco: "Rua das Crianças, 789 - Tatuapé, São Paulo/SP",
+                telefone: "(11) 3344-5566",
+                horario: "Seg-Sex: 7h-19h",
+                lat: -23.5400,
+                lng: -46.5750
+            },
+            {
+                id: 4,
+                nome: "Hospital Psiquiátrico São João",
+                tipo: "hospital",
+                especialidade: "dependencia-quimica",
+                endereco: "Av. Doutor Arnaldo, 2100 - Pinheiros, São Paulo/SP",
+                telefone: "(11) 3897-1234",
+                horario: "24 horas",
+                lat: -23.5587,
+                lng: -46.6689
+            },
+            {
+                id: 5,
+                nome: "CAPS AD II - Zona Norte",
+                tipo: "caps",
+                especialidade: "dependencia-quimica",
+                endereco: "Rua Almirante Teffé, 800 - Santana, São Paulo/SP",
+                telefone: "(11) 2975-3090",
+                horario: "Seg-Sex: 9h-17h",
+                lat: -23.5004,
+                lng: -46.6339
+            },
+            {
+                id: 6,
+                nome: "Ambulatório de Saúde Mental - Vila Prudente",
+                tipo: "clinica",
+                especialidade: "saude-mental",
+                endereco: "Rua Serra de Botucatu, 1150 - Vila Prudente, São Paulo/SP",
+                telefone: "(11) 2062-8500",
+                horario: "Ter-Qui: 13h-20h",
+                lat: -23.5841,
+                lng: -46.5825
+            },
+            {
+                id: 7,
+                nome: "Comunidade Terapêutica Recuperar",
+                tipo: "online",
+                especialidade: "dependencia-quimica",
+                endereco: "Estrada do Sabão, 2500 - Parelheiros, São Paulo/SP",
+                telefone: "(11) 5920-3945",
+                horario: "24 horas",
+                lat: -23.8223,
+                lng: -46.7278
+            },
+            {
+                id: 8,
+                nome: "CAPS III Artur de Paula",
+                tipo: "caps",
+                especialidade: "dependencia-quimica",
+                endereco: "Rua Dr. Artur de Paula, 44 - Bela Vista, São Paulo/SP",
+                telefone: "(11) 3256-7890",
+                horario: "24 horas",
+                lat: -23.5629,
+                lng: -46.6502
+            },
+            {
+                id: 9,
+                nome: "Centro de Convivência Espaço Aberto",
+                tipo: "clinica",
+                especialidade: "dependencia-quimica",
+                endereco: "Rua Apinajés, 1000 - Perdizes, São Paulo/SP",
+                telefone: "(11) 3864-2030",
+                horario: "Seg-Sex: 8h-17h, Sáb: 9h-13h",
+                lat: -23.5295,
+                lng: -46.6743
+            },
+            {
+                id: 10,
+                nome: "Pronto Socorro Psiquiátrico - HSPE",
+                tipo: "online",
+                especialidade: "dependencia-quimica",
+                endereco: "Av. Ibirapuera, 981 - Moema, São Paulo/SP",
+                telefone: "(11) 5080-8000",
+                horario: "24 horas",
+                lat: -23.5994,
+                lng: -46.6662
+            }
+        ];
+
+        let map;
+        let markers = [];
+
+        function initMap() {
+            // Centro do mapa (ex: São Paulo)
+            map = L.map('map').setView([-23.5505, -46.6333], 12);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
+
+            // Adicionar marcadores
+            updateMapMarkers(servicosData);
+        }
+
+        function updateMapMarkers(servicos) {
+            // Limpar marcadores existentes
+            markers.forEach(marker => map.removeLayer(marker));
+            markers = [];
+
+            // Adicionar novos marcadores
+            servicos.forEach(servico => {
+                const marker = L.marker([servico.lat, servico.lng])
+                    .addTo(map)
+                    .bindPopup(`<b>${servico.nome}</b><br>${servico.endereco}`);
+
+                markers.push(marker);
+            });
+
+            // Ajustar zoom para mostrar todos os marcadores
+            if (servicos.length > 0) {
+                const markerGroup = new L.featureGroup(markers);
+                map.fitBounds(markerGroup.getBounds().pad(0.2));
+            }
+        }
+
+        // Variáveis para controle de paginação de serviços
+        let currentServicosPage = 1;
+        const servicosPerPage = 2; // Número de serviços por página
+
+        function aplicarEfeitoLoading() {
+            document.querySelectorAll('.btn').forEach(btn => {
+                if (!btn.classList.contains('crisis-btn') && !btn.dataset.listener) {
+                    btn.addEventListener('click', function(e) {
+                        const originalText = this.innerHTML;
+                        this.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Carregando...';
+                        this.disabled = true;
+
+                        setTimeout(() => {
+                            this.innerHTML = originalText;
+                            this.disabled = false;
+                        }, 500);
+                    });
+                    btn.dataset.listener = "true"; // evita duplicar
+                }
+            });
+        }
+
+        // Modifique a função renderServicesResults para incluir paginação
+        function renderServicesResults(servicos, page = 1) {
+            const container = document.getElementById('servicosResults');
+            container.innerHTML = '';
+
+            // Calcular itens para a página atual
+            const startIndex = (page - 1) * servicosPerPage;
+            const endIndex = startIndex + servicosPerPage;
+            const paginatedServicos = servicos.slice(startIndex, endIndex);
+
+            if (paginatedServicos.length === 0) {
+                container.innerHTML = `
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>
+                        Nenhum serviço encontrado com esses filtros.
+                    </div>
+                `;
+                return;
+            }
+
+            // Renderizar serviços (mantenha o código existente, mas usando paginatedServicos)
+            paginatedServicos.forEach(servico => {
+                const typeClass = servico.tipo === 'caps' ? 'bg-primary' : 'bg-secondary';
+
+                const card = document.createElement('div');
+                card.className = 'service-card';
+                card.innerHTML = `
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <span class="service-type ${typeClass}">${servico.tipo.toUpperCase()}</span>
+                            <h3 class="service-title">${servico.nome}</h3>
+                        </div>
+                        <button class="btn btn-sm btn-outline-custom" onclick="focusOnMarker(${servico.id})">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </button>
+                    </div>
+
+                    <div class="service-meta mt-2">
+                        <p><i class="fas fa-map"></i> ${servico.endereco}</p>
+                        <p><i class="fas fa-phone"></i> ${servico.telefone}</p>
+                        <p><i class="fas fa-clock"></i> ${servico.horario}</p>
+                    </div>
+
+                    <div class="mt-2">
+                        <a href="#" class="btn btn-sm btn-primary-custom me-2">
+                            <i class="fas fa-directions me-1"></i> Como chegar
+                        </a>
+                        <a href="#" class="btn btn-sm btn-outline-custom">
+                            <i class="fas fa-info-circle me-1"></i> Mais detalhes
+                        </a>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            // Renderizar paginação
+            renderServicosPagination(servicos.length, page);
+        }
+
+        // Função para renderizar a paginação de serviços
+        function renderServicosPagination(totalItems, currentPage) {
+            const totalPages = Math.ceil(totalItems / servicosPerPage);
+            const pagination = document.getElementById('servicosPagination');
+            pagination.innerHTML = '';
+
+            if (totalPages <= 1) return;
+
+            // Botão Anterior
+            pagination.innerHTML += `
+                <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+                    <a class="page-link" href="#" onclick="changeServicosPage(${currentPage - 1}, event)">
+                        <i class="fas fa-angle-left"></i>
+                    </a>
+                </li>
+            `;
+
+            // Páginas
+            const maxVisiblePages = 5;
+            let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+            let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+            if (endPage - startPage + 1 < maxVisiblePages) {
+                startPage = Math.max(1, endPage - maxVisiblePages + 1);
+            }
+
+            if (startPage > 1) {
+                pagination.innerHTML += `
+                    <li class="page-item">
+                        <a class="page-link" href="#" onclick="changeServicosPage(1, event)">1</a>
+                    </li>
+                    ${startPage > 2 ? '<li class="page-item disabled"><span class="page-link">...</span></li>' : ''}
+                `;
+            }
+
+            for (let i = startPage; i <= endPage; i++) {
+                pagination.innerHTML += `
+                    <li class="page-item ${i === currentPage ? 'active' : ''}">
+                        <a class="page-link" href="#" onclick="changeServicosPage(${i}, event)">${i}</a>
+                    </li>
+                `;
+            }
+
+            if (endPage < totalPages) {
+                pagination.innerHTML += `
+                    ${endPage < totalPages - 1 ? '<li class="page-item disabled"><span class="page-link">...</span></li>' : ''}
+                    <li class="page-item">
+                        <a class="page-link" href="#" onclick="changeServicosPage(${totalPages}, event)">${totalPages}</a>
+                    </li>
+                `;
+            }
+
+            // Botão Próximo
+            pagination.innerHTML += `
+                <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+                    <a class="page-link" href="#" onclick="changeServicosPage(${currentPage + 1}, event)">
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                </li>
+            `;
+        }
+
+        // Função para mudar de página
+        function changeServicosPage(page, event) {
+            if (event) event.preventDefault();
+            currentServicosPage = page;
+
+            // Aplicar filtros novamente (ou usar os serviços já filtrados)
+            let filtered = servicosData;
+            const localizacao = document.getElementById('localizacaoInput').value.toLowerCase();
+            const tipo = document.getElementById('tipoServicoSelect').value;
+            const especialidade = document.getElementById('especialidadeSelect').value;
+
+            if (tipo !== 'todos') {
+                filtered = filtered.filter(s => s.tipo === tipo);
+            }
+
+            if (especialidade !== 'todos') {
+                filtered = filtered.filter(s => s.especialidade === especialidade);
+            }
+
+            if (localizacao) {
+                filtered = filtered.filter(s =>
+                    s.endereco.toLowerCase().includes(localizacao)
+                );
+            }
+
+            renderServicesResults(filtered, page);
+            updateMapMarkers(filtered);
+            aplicarEfeitoLoading();
+
+            // Scroll suave para a seção de serviços
+            const servicosSection = document.getElementById('guia-servicos');
+            if (servicosSection && page !== 1) {
+                servicosSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        function focusOnMarker(serviceId) {
+            const service = servicosData.find(s => s.id === serviceId);
+            if (service) {
+                map.setView([service.lat, service.lng], 15);
+                markers.forEach(marker => {
+                    if (marker.getLatLng().lat === service.lat &&
+                        marker.getLatLng().lng === service.lng) {
+                        marker.openPopup();
+                    }
+                });
+            }
+        }
+
+        function filterServices() {
+            currentServicosPage = 1; // Resetar para a primeira página ao aplicar novos filtros
+
+            const localizacao = document.getElementById('localizacaoInput').value.toLowerCase();
+            const tipo = document.getElementById('tipoServicoSelect').value;
+            const especialidade = document.getElementById('especialidadeSelect').value;
+
+            let filtered = servicosData;
+
+            if (tipo !== 'todos') {
+                filtered = filtered.filter(s => s.tipo === tipo);
+            }
+
+            if (especialidade !== 'todos') {
+                filtered = filtered.filter(s => s.especialidade === especialidade);
+            }
+
+            if (localizacao) {
+                filtered = filtered.filter(s =>
+                    s.endereco.toLowerCase().includes(localizacao)
+                );
+            }
+
+            renderServicesResults(filtered, currentServicosPage);
+            updateMapMarkers(filtered);
+        }
+
+        // Dados de depoimentos
+        const depoimentosData = [
+            {
+                id: 1,
+                text: "O Portal Mônada foi essencial na minha recuperação da dependência química. Através dos recursos e informações encontradas aqui, consegui entender meu problema e buscar ajuda adequada.",
+                author: "João P.",
+                initial: "J",
+                date: "15/06/2023",
+                category: "recovery"
+            },
+            {
+                id: 2,
+                text: "Como mãe de um adolescente com problemas de ansiedade, encontrei no portal orientações valiosas para ajudar meu filho e também para cuidar da minha própria saúde mental durante esse processo difícil.",
+                author: "Maria S.",
+                initial: "M",
+                date: "10/06/2023",
+                category: "family"
+            },
+            {
+                id: 3,
+                text: "Sou profissional da saúde e utilizo os materiais do Portal Mônada para complementar o tratamento dos meus pacientes. A qualidade das informações é excelente e ajuda na adesão ao tratamento.",
+                author: "Dr. Carlos",
+                initial: "C",
+                date: "05/06/2023",
+                category: "treatment"
+            },
+            {
+                id: 4,
+                text: "Depois de anos lutando contra a depressão, encontrei no portal informações que me ajudaram a entender que precisava de ajuda profissional. Hoje estou em tratamento e melhor.",
+                author: "Ana L.",
+                initial: "A",
+                date: "28/05/2023",
+                category: "treatment"
+            },
+            {
+                id: 5,
+                text: "Os vídeos educativos sobre prevenção ao uso de drogas foram fundamentais para eu conseguir ajudar meu irmão mais novo antes que o problema se agravasse. Gratidão por esse conteúdo!",
+                author: "Ricardo M.",
+                initial: "R",
+                date: "20/05/2023",
+                category: "prevention"
+            },
+            {
+                id: 6,
+                text: "Participar dos grupos de apoio virtuais indicados pelo portal mudou minha perspectiva sobre a recuperação. Ver que não estou sozinho nessa jornada faz toda a diferença.",
+                author: "Pedro H.",
+                initial: "P",
+                date: "12/05/2023",
+                category: "recovery"
+            },
+            {
+                id: 7,
+                text: "Como educador, utilizo os materiais de prevenção do portal em minhas aulas. Os alunos se identificam muito com a linguagem acessível e os exemplos práticos.",
+                author: "Prof. Marcos",
+                initial: "M",
+                date: "08/05/2023",
+                category: "prevention"
+            },
+            {
+                id: 8,
+                text: "A seção sobre dependência de jogos me ajudou a perceber que meu uso da internet estava fora de controle. Com as técnicas que aprendi aqui, consegui estabelecer um equilíbrio saudável.",
+                author: "Luiza T.",
+                initial: "L",
+                date: "02/05/2023",
+                category: "recovery"
+            }
+        ];
+
+        // Variáveis para controle de paginação
+        let currentDepoimentoPage = 1;
+        const depoimentosPerPage = 4;
+        let filteredDepoimentos = [...depoimentosData];
+        let currentDepoimentoFilter = 'all';
+
+        // Função para renderizar depoimentos
+        function renderDepoimentos(page = 1) {
+            const container = document.getElementById('depoimentosContainer');
+            container.innerHTML = '';
+
+            // Calcular itens para a página atual
+            const startIndex = (page - 1) * depoimentosPerPage;
+            const endIndex = startIndex + depoimentosPerPage;
+            const paginatedDepoimentos = filteredDepoimentos.slice(startIndex, endIndex);
+
+            if (paginatedDepoimentos.length === 0) {
+                container.innerHTML = `
+                    <div class="col-12 text-center py-5">
+                        <i class="fas fa-comment-slash fa-3x mb-3" style="color: var(--accent-color);"></i>
+                        <h4>Nenhum depoimento encontrado</h4>
+                        <p>Tente ajustar os filtros de categoria</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Renderizar depoimentos
+            paginatedDepoimentos.forEach(depoimento => {
+                const categoryNames = {
+                    'recovery': 'Recuperação',
+                    'treatment': 'Tratamento',
+                    'prevention': 'Prevenção',
+                    'family': 'Família'
+                };
+
+                const depoimentoElement = `
+                    <div class="col-lg-6 col-md-12">
+                        <div class="depoimento-card">
+                            <span class="depoimento-category">${categoryNames[depoimento.category]}</span>
+                            <div class="depoimento-text">${depoimento.text}</div>
+                            <div class="depoimento-author">
+                                <div class="depoimento-avatar">${depoimento.initial}</div>
+                                <div>
+                                    <strong>${depoimento.author}</strong>
+                                    <div class="depoimento-meta">
+                                        <i class="fas fa-calendar-alt me-1"></i>
+                                        ${depoimento.date}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += depoimentoElement;
+            });
+
+            // Renderizar paginação
+            renderDepoimentosPagination(filteredDepoimentos.length, page);
+        }
+
+        // Função para renderizar paginação
+        function renderDepoimentosPagination(totalItems, currentPage) {
+            const totalPages = Math.ceil(totalItems / depoimentosPerPage);
+            const pagination = document.getElementById('depoimentosPagination');
+            pagination.innerHTML = '';
+
+            if (totalPages <= 1) return;
+
+            // Botão Anterior
+            pagination.innerHTML += `
+                <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+                    <a class="page-link" href="#" onclick="changeDepoimentoPage(${currentPage - 1}, event)">
+                        <i class="fas fa-angle-left"></i>
+                    </a>
+                </li>
+            `;
+
+            // Páginas
+            const maxVisiblePages = 5;
+            let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+            let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+            if (endPage - startPage + 1 < maxVisiblePages) {
+                startPage = Math.max(1, endPage - maxVisiblePages + 1);
+            }
+
+            if (startPage > 1) {
+                pagination.innerHTML += `
+                    <li class="page-item">
+                        <a class="page-link" href="#" onclick="changeDepoimentoPage(1, event)">1</a>
+                    </li>
+                    ${startPage > 2 ? '<li class="page-item disabled"><span class="page-link">...</span></li>' : ''}
+                `;
+            }
+
+            for (let i = startPage; i <= endPage; i++) {
+                pagination.innerHTML += `
+                    <li class="page-item ${i === currentPage ? 'active' : ''}">
+                        <a class="page-link" href="#" onclick="changeDepoimentoPage(${i}, event)">${i}</a>
+                    </li>
+                `;
+            }
+
+            if (endPage < totalPages) {
+                pagination.innerHTML += `
+                    ${endPage < totalPages - 1 ? '<li class="page-item disabled"><span class="page-link">...</span></li>' : ''}
+                    <li class="page-item">
+                        <a class="page-link" href="#" onclick="changeDepoimentoPage(${totalPages}, event)">${totalPages}</a>
+                    </li>
+                `;
+            }
+
+            // Botão Próximo
+            pagination.innerHTML += `
+                <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+                    <a class="page-link" href="#" onclick="changeDepoimentoPage(${currentPage + 1}, event)">
+                        <i class="fas fa-angle-right"></i>
+                    </a>
+                </li>
+            `;
+        }
+
+        // Função para mudar de página
+        function changeDepoimentoPage(page, event) {
+            if (event) event.preventDefault();
+            currentDepoimentoPage = page;
+            renderDepoimentos(page);
+
+            // Scroll suave para a seção
+            const depoimentosSection = document.getElementById('depoimentos');
+            if (depoimentosSection && page !== 1) {
+                depoimentosSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        // Função para filtrar depoimentos
+        function filterDepoimentos(category) {
+            currentDepoimentoFilter = category;
+            currentDepoimentoPage = 1;
+
+            if (category === 'all') {
+                filteredDepoimentos = [...depoimentosData];
+            } else {
+                filteredDepoimentos = depoimentosData.filter(d => d.category === category);
+            }
+
+            renderDepoimentos();
+        }
+
+        // Dados de exemplo
+        const profissionais = [
+            {
+                id: 1,
+                nome: "Dra. Ana Silva",
+                especialidade: "psicologo",
+                modalidade: ["online", "presencial"],
+                foto: "https://randomuser.me/api/portraits/women/65.jpg",
+                avaliacao: 4.9,
+                localizacao: "São Paulo",
+                descricao: "Especialista em terapia cognitivo-comportamental",
+                horarios: ["08:00", "10:00", "14:00", "16:00"]
+            },
+            {
+                id: 2,
+                nome: "Dr. Carlos Mendes",
+                especialidade: "psiquiatra",
+                modalidade: ["presencial"],
+                foto: "https://randomuser.me/api/portraits/men/32.jpg",
+                avaliacao: 4.7,
+                localizacao: "Rio de Janeiro",
+                descricao: "Psiquiatra com foco em dependência química",
+                horarios: ["09:00", "11:00", "15:00"]
+            },
+            {
+                id: 3,
+                nome: "Dra. Fernanda Lima",
+                especialidade: "psicologo",
+                modalidade: ["online"],
+                foto: "https://randomuser.me/api/portraits/women/44.jpg",
+                avaliacao: 4.8,
+                localizacao: "Belo Horizonte",
+                descricao: "Terapeuta especializada em ansiedade e depressão",
+                horarios: ["13:00", "14:00", "17:00", "18:00"]
+            },
+            {
+                id: 4,
+                nome: "Dr. Roberto Souza",
+                especialidade: "terapeuta",
+                modalidade: ["online", "presencial"],
+                foto: "https://randomuser.me/api/portraits/men/75.jpg",
+                avaliacao: 4.5,
+                localizacao: "Porto Alegre",
+                descricao: "Terapeuta familiar e de casais",
+                horarios: ["10:00", "12:00", "16:00"]
+            },
+            {
+                id: 5,
+                nome: "Dra. Juliana Costa",
+                especialidade: "psicologo",
+                modalidade: ["presencial"],
+                foto: "https://randomuser.me/api/portraits/women/68.jpg",
+                avaliacao: 4.9,
+                localizacao: "Brasília",
+                descricao: "Especialista em psicologia infantil",
+                horarios: ["08:30", "09:30", "14:30"]
+            },
+            {
+                id: 6,
+                nome: "Dr. Marcos Oliveira",
+                especialidade: "psiquiatra",
+                modalidade: ["online"],
+                foto: "https://randomuser.me/api/portraits/men/45.jpg",
+                avaliacao: 4.6,
+                localizacao: "Salvador",
+                descricao: "Psiquiatra geral com abordagem humanista",
+                horarios: ["11:00", "13:00", "15:00", "17:00"]
+            },
+            {
+                id: 7,
+                nome: "Dra. Patrícia Santos",
+                especialidade: "psicologo",
+                modalidade: ["online", "presencial"],
+                foto: "https://randomuser.me/api/portraits/women/33.jpg",
+                avaliacao: 4.8,
+                localizacao: "Curitiba",
+                descricao: "Especialista em TCC para transtornos alimentares",
+                horarios: ["09:00", "12:00", "16:00"]
+            },
+            {
+                id: 8,
+                nome: "Dr. Lucas Pereira",
+                especialidade: "terapeuta",
+                modalidade: ["presencial"],
+                foto: "https://randomuser.me/api/portraits/men/22.jpg",
+                avaliacao: 4.7,
+                localizacao: "Recife",
+                descricao: "Terapeuta ocupacional e mindfulness",
+                horarios: ["08:00", "10:00", "14:00", "16:00"]
+            },
+            {
+                id: 9,
+                nome: "Dra. Amanda Rocha",
+                especialidade: "psicologo",
+                modalidade: ["online"],
+                foto: "https://randomuser.me/api/portraits/women/50.jpg",
+                avaliacao: 4.9,
+                localizacao: "Fortaleza",
+                descricao: "Psicóloga clínica com foco em trauma",
+                horarios: ["13:00", "15:00", "18:00"]
+            },
+            {
+                id: 10,
+                nome: "Dr. Eduardo Martins",
+                especialidade: "psiquiatra",
+                modalidade: ["online", "presencial"],
+                foto: "https://randomuser.me/api/portraits/men/60.jpg",
+                avaliacao: 4.8,
+                localizacao: "Manaus",
+                descricao: "Psiquiatra especializado em TDAH",
+                horarios: ["09:00", "11:00", "14:00"]
+            },
+            {
+                id: 11,
+                nome: "Dra. Beatriz Almeida",
+                especialidade: "psicologo",
+                modalidade: ["presencial"],
+                foto: "https://randomuser.me/api/portraits/women/29.jpg",
+                avaliacao: 4.7,
+                localizacao: "Florianópolis",
+                descricao: "Psicóloga junguiana",
+                horarios: ["10:00", "12:00", "15:00", "17:00"]
+            },
+            {
+                id: 12,
+                nome: "Dr. Gustavo Henrique",
+                especialidade: "terapeuta",
+                modalidade: ["online"],
+                foto: "https://randomuser.me/api/portraits/men/40.jpg",
+                avaliacao: 4.6,
+                localizacao: "Vitória",
+                descricao: "Terapeuta holístico",
+                horarios: ["08:00", "12:00", "16:00"]
+            },
+            {
+                id: 13,
+                nome: "Dra. Carolina Dias",
+                especialidade: "psicologo",
+                modalidade: ["online", "presencial"],
+                foto: "https://randomuser.me/api/portraits/women/55.jpg",
+                avaliacao: 4.9,
+                localizacao: "Goiânia",
+                descricao: "Especialista em terapia de casal",
+                horarios: ["09:30", "11:30", "14:30"]
+            },
+            {
+                id: 14,
+                nome: "Dr. Rafael Monteiro",
+                especialidade: "psiquiatra",
+                modalidade: ["presencial"],
+                foto: "https://randomuser.me/api/portraits/men/70.jpg",
+                avaliacao: 4.8,
+                localizacao: "Campinas",
+                descricao: "Psiquiatra geriátrico",
+                horarios: ["08:00", "10:00", "13:00", "15:00"]
+            },
+            {
+                id: 15,
+                nome: "Dra. Isabela Fontes",
+                especialidade: "psicologo",
+                modalidade: ["online"],
+                foto: "https://randomuser.me/api/portraits/women/25.jpg",
+                avaliacao: 4.7,
+                localizacao: "Natal",
+                descricao: "Especialista em psicologia positiva",
+                horarios: ["11:00", "14:00", "17:00"]
+            },
+            {
+                id: 16,
+                nome: "Dr. Vinicius Castro",
+                especialidade: "terapeuta",
+                modalidade: ["online", "presencial"],
+                foto: "https://randomuser.me/api/portraits/men/35.jpg",
+                avaliacao: 4.5,
+                localizacao: "Maceió",
+                descricao: "Terapeuta comportamental",
+                horarios: ["09:00", "12:00", "16:00"]
+            },
+            {
+                id: 17,
+                nome: "Dra. Larissa Moura",
+                especialidade: "psicologo",
+                modalidade: ["presencial"],
+                foto: "https://randomuser.me/api/portraits/women/62.jpg",
+                avaliacao: 4.9,
+                localizacao: "João Pessoa",
+                descricao: "Neuropsicóloga",
+                horarios: ["08:30", "10:30", "14:30"]
+            },
+            {
+                id: 18,
+                nome: "Dr. Fábio Nunes",
+                especialidade: "psiquiatra",
+                modalidade: ["online"],
+                foto: "https://randomuser.me/api/portraits/men/55.jpg",
+                avaliacao: 4.8,
+                localizacao: "Teresina",
+                descricao: "Especialista em esquizofrenia",
+                horarios: ["11:00", "13:00", "15:00", "17:00"]
+            },
+            {
+                id: 19,
+                nome: "Dra. Renata Vieira",
+                especialidade: "psicologo",
+                modalidade: ["online", "presencial"],
+                foto: "https://randomuser.me/api/portraits/women/40.jpg",
+                avaliacao: 4.7,
+                localizacao: "Cuiabá",
+                descricao: "Psicóloga perinatal",
+                horarios: ["09:00", "12:00", "15:00"]
+            },
+            {
+                id: 20,
+                nome: "Dr. André Luiz",
+                especialidade: "terapeuta",
+                modalidade: ["presencial"],
+                foto: "https://randomuser.me/api/portraits/men/65.jpg",
+                avaliacao: 4.6,
+                localizacao: "Aracaju",
+                descricao: "Terapeuta ocupacional",
+                horarios: ["08:00", "10:00", "14:00", "16:00"]
+            }
+        ];
+
+        // Variáveis globais
+        let currentPageProfissionais = 1;
+        const itemsPerPageProfissionais = 6;
+        let filteredProfissionais = [...profissionais];
+
+        // Renderiza os profissionais
+        function renderProfissionais(page = 1) {
+            const start = (page - 1) * itemsPerPageProfissionais;
+            const end = start + itemsPerPageProfissionais;
+            const paginatedItems = filteredProfissionais.slice(start, end);
+
+            const container = document.getElementById('profissionaisList');
+            container.innerHTML = '';
+
+            if (paginatedItems.length === 0) {
+                container.innerHTML = `
+                    <div class="col-12 text-center py-5">
+                        <i class="fas fa-user-md fa-3x mb-3 text-muted"></i>
+                        <h5>Nenhum profissional encontrado</h5>
+                        <p class="text-muted">Tente ajustar os filtros</p>
+                    </div>
+                `;
+            } else {
+                paginatedItems.forEach(profissional => {
+                    const card = document.createElement('div');
+                    card.className = 'col-md-6 col-lg-4';
+                    card.innerHTML = `
+                        <div class="card profissional-card h-100">
+                            <div class="card-body text-center">
+                                <img src="${profissional.foto}" alt="${profissional.nome}" class="profissional-img mb-3">
+                                <h5 class="mb-1">${profissional.nome}</h5>
+                                <p class="text-muted small mb-2">${getEspecialidade(profissional.especialidade)}</p>
+                                <div class="d-flex justify-content-center mb-3">
+                                    ${renderStars(profissional.avaliacao)}
+                                </div>
+                                <p class="small text-muted mb-3">
+                                    <i class="fas fa-map-marker-alt me-1"></i>
+                                    ${profissional.localizacao} |
+                                    ${profissional.modalidade.includes('online') ? '<i class="fas fa-video ms-2"></i>' : ''}
+                                    ${profissional.modalidade.includes('presencial') ? '<i class="fas fa-building ms-2"></i>' : ''}
+                                </p>
+                                <button class="btn btn-sm btn-outline-primary agendar-btn"
+                                        data-id="${profissional.id}">
+                                    <i class="fas fa-calendar-alt me-1"></i> Agendar
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            }
+
+            // Atualiza contadores
+            document.getElementById('profissionaisCount').textContent = paginatedItems.length;
+            document.getElementById('totalProfissionais').textContent = filteredProfissionais.length;
+
+            // Renderiza paginação
+            renderProfissionalPagination();
+
+            // Configura eventos dos botões
+            setupAgendamentoButtons();
+        }
+
+        // Renderiza a paginação
+        function renderProfissionalPagination() {
+            const totalPages = Math.ceil(filteredProfissionais.length / itemsPerPageProfissionais);
+            const pagination = document.getElementById('pagination');
+            pagination.innerHTML = '';
+
+            if (totalPages <= 1) return;
+
+            // Botão Anterior
+            pagination.innerHTML += `
+                <li class="page-item ${currentPageProfissionais === 1 ? 'disabled' : ''}">
+                    <a class="page-link" href="#" data-page="${currentPageProfissionais - 1}">
+                        <i class="fas fa-chevron-left"></i>
+                    </a>
+                </li>
+            `;
+
+            // Páginas (máximo 5 visíveis)
+            const maxVisible = 5;
+            let start = Math.max(1, currentPageProfissionais - Math.floor(maxVisible / 2));
+            let end = Math.min(totalPages, start + maxVisible - 1);
+
+            if (end - start + 1 < maxVisible) {
+                start = Math.max(1, end - maxVisible + 1);
+            }
+
+            // Primeira página + "..."
+            if (start > 1) {
+                pagination.innerHTML += `
+                    <li class="page-item">
+                        <a class="page-link" href="#" data-page="1">1</a>
+                    </li>
+                    ${start > 2 ? '<li class="page-item disabled"><span class="page-link">...</span></li>' : ''}
+                `;
+            }
+
+            // Páginas intermediárias
+            for (let i = start; i <= end; i++) {
+                pagination.innerHTML += `
+                    <li class="page-item ${i === currentPageProfissionais ? 'active' : ''}">
+                        <a class="page-link" href="#" data-page="${i}">${i}</a>
+                    </li>
+                `;
+            }
+
+            // Última página + "..."
+            if (end < totalPages) {
+                pagination.innerHTML += `
+                    ${end < totalPages - 1 ? '<li class="page-item disabled"><span class="page-link">...</span></li>' : ''}
+                    <li class="page-item">
+                        <a class="page-link" href="#" data-page="${totalPages}">${totalPages}</a>
+                    </li>
+                `;
+            }
+
+            // Botão Próximo
+            pagination.innerHTML += `
+                <li class="page-item ${currentPageProfissionais === totalPages ? 'disabled' : ''}">
+                    <a class="page-link" href="#" data-page="${currentPageProfissionais + 1}">
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                </li>
+            `;
+        }
+
+        // Configura eventos
+        function setupEventListeners() {
+            // Filtros
+            document.getElementById('aplicarFiltros').addEventListener('click', aplicarFiltros);
+
+            // Melhorada: Delegação de eventos para paginação
+            document.addEventListener('click', function(e) {
+                // Verificar se o clique foi em um link de paginação ou no ícone dentro dele
+                const pageLink = e.target.closest('.page-link') ||
+                                (e.target.closest('i') && e.target.closest('i').parentElement.closest('.page-link'));
+
+                if (pageLink) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    // Obter o número da página do atributo data-page ou do pai
+                    let page = pageLink.dataset.page;
+                    if (!page && e.target.closest('i')) {
+                        page = e.target.closest('i').parentElement.dataset.page;
+                    }
+
+                    if (page) {
+                        const newPage = parseInt(page);
+                        if (!isNaN(newPage)) {
+                            currentPageProfissionais = newPage;
+                            renderProfissionais(currentPageProfissionais);
+                        }
+                    }
+                }
+
+                // Verificar se o clique foi em um botão de agendamento
+                if (e.target.closest('.agendar-btn')) {
+                    const btn = e.target.closest('.agendar-btn');
+                    const id = btn.dataset.id;
+                    const profissional = profissionais.find(p => p.id == id);
+
+                    if (profissional) {
+                        document.getElementById('modalProfissional').value = profissional.nome;
+                        document.getElementById('modalData').value = '';
+
+                        // Preenche horários
+                        const select = document.getElementById('modalHorario');
+                        select.innerHTML = '<option value="">Selecione um horário</option>';
+                        profissional.horarios.forEach(hora => {
+                            select.innerHTML += `<option value="${hora}">${hora}</option>`;
+                        });
+
+                        // Abre modal
+                        new bootstrap.Modal(document.getElementById('agendamentoModal')).show();
+                    }
+                }
+            });
+
+            // Formulário de agendamento
+            document.getElementById('formAgendamento').addEventListener('submit', function(e) {
+                e.preventDefault();
+                // Aqui você enviaria os dados para o servidor
+                alert('Agendamento realizado com sucesso!');
+                bootstrap.Modal.getInstance(document.getElementById('agendamentoModal')).hide();
+            });
+        }
+
+        // Configura botões de agendamento
+        function setupAgendamentoButtons() {
+            document.querySelectorAll('.agendar-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = this.dataset.id;
+                    const profissional = profissionais.find(p => p.id == id);
+
+                    if (profissional) {
+                        document.getElementById('modalProfissional').value = profissional.nome;
+                        document.getElementById('modalData').value = '';
+
+                        // Preenche horários
+                        const select = document.getElementById('modalHorario');
+                        select.innerHTML = '<option value="">Selecione um horário</option>';
+                        profissional.horarios.forEach(hora => {
+                            select.innerHTML += `<option value="${hora}">${hora}</option>`;
+                        });
+
+                        // Abre modal
+                        new bootstrap.Modal(document.getElementById('agendamentoModal')).show();
+                    }
+                });
+            });
+        }
+
+        // Aplica filtros
+        function aplicarFiltros() {
+            const especialidade = document.getElementById('especialidadeFilter').value;
+            const modalidade = document.getElementById('modalidadeFilter').value;
+            const data = document.getElementById('dataFilter').value;
+
+            filteredProfissionais = profissionais.filter(profissional => {
+                // Filtro por especialidade
+                if (especialidade !== 'all' && profissional.especialidade !== especialidade) {
+                    return false;
+                }
+
+                // Filtro por modalidade
+                if (modalidade !== 'all' && !profissional.modalidade.includes(modalidade)) {
+                    return false;
+                }
+
+                // Filtro por data (implementação básica)
+                if (data) {
+                    // Aqui você implementaria a lógica real de verificação de disponibilidade
+                    // Esta é apenas uma demonstração
+                    return profissional.horarios.length > 0;
+                }
+
+                return true;
+            });
+
+            currentPageProfissionais = 1;
+            renderProfissionais();
+        }
+
+        // Funções auxiliares
+        function getEspecialidade(codigo) {
+            const especialidades = {
+                'psicologo': 'Psicólogo',
+                'psiquiatra': 'Psiquiatra',
+                'terapeuta': 'Terapeuta'
+            };
+            return especialidades[codigo] || codigo;
+        }
+
+        function renderStars(avaliacao) {
+            let stars = '';
+            for (let i = 1; i <= 5; i++) {
+                stars += `<i class="fas fa-star ${i <= avaliacao ? 'text-warning' : 'text-muted'}"></i>`;
+            }
+            return stars;
+        }
+
+        // Corrigir o fechamento do modal pelo "X"
+        document.getElementById('agendamentoModal').addEventListener('hidden.bs.modal', function() {
+            // Remove o backdrop manualmente se necessário
+            const backdrops = document.querySelectorAll('.modal-backdrop');
+            backdrops.forEach(backdrop => backdrop.remove());
+
+            // Restaura o overflow do body
+            document.body.style.overflow = 'auto';
+            document.body.style.paddingRight = '0px';
+
+            // Remove a classe modal-open se persistir
+            document.body.classList.remove('modal-open');
+        });
+
+        // Inicialização quando o DOM estiver carregado
+        document.addEventListener('DOMContentLoaded', function() {
+            // Renderizar notícias iniciais
+            applyFilters();
+
+            renderGallery(currentGalleryPage);
+
+            // Inicializar mapa
+            initMap();
+
+            // Configurar botão de busca
+            document.getElementById('buscarServicosBtn').addEventListener('click', filterServices);
+
+            // Carregar todos os serviços inicialmente
+            renderServicesResults(servicosData, currentServicosPage);
+
+            // Renderizar depoimentos iniciais
+            renderDepoimentos();
+
+            renderProfissionais();
+            setupEventListeners();
+
+            // Configurar filtros
+            document.querySelectorAll('#depoimentos .filter-tag').forEach(tag => {
+                tag.addEventListener('click', function() {
+                    // Remover classe active de todos os botões
+                    document.querySelectorAll('#depoimentos .filter-tag').forEach(t => t.classList.remove('active'));
+                    // Adicionar classe active ao botão clicado
+                    this.classList.add('active');
+
+                    // Filtrar depoimentos
+                    const filter = this.getAttribute('data-filter');
+                    filterDepoimentos(filter);
+                });
+            });
+
+            // Configurar envio de formulário
+            document.getElementById('depoimentoForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // Simular envio (substituir por AJAX na implementação real)
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
+                submitBtn.disabled = true;
+
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+
+                    // Mostrar mensagem de sucesso
+                    const alert = document.createElement('div');
+                    alert.className = 'alert alert-success mt-3';
+                    alert.innerHTML = `
+                        <i class="fas fa-check-circle me-2"></i>
+                        Seu depoimento foi recebido e passará por moderação antes de ser publicado. Obrigado por compartilhar sua história!
+                    `;
+                    this.appendChild(alert);
+
+                    // Limpar formulário
+                    this.reset();
+
+                    // Remover mensagem após 5 segundos
+                    setTimeout(() => alert.remove(), 5000);
+                }, 1500);
+            });
+
+            // Configurar eventos dos filtros
+            document.querySelectorAll('.news-filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remover classe active de todos os botões
+                    document.querySelectorAll('.news-filter-btn').forEach(b => b.classList.remove('active'));
+                    // Adicionar classe active ao botão clicado
+                    this.classList.add('active');
+
+                    currentCategory = this.getAttribute('data-category');
+                    currentPage = 1; // Resetar para a primeira página
+                    applyFilters();
+                });
+            });
+
+            // Configurar evento de ordenação
+            document.getElementById('newsSortSelect').addEventListener('change', function() {
+                currentSort = this.value;
+                applyFilters();
+            });
+
+            // Configurar busca em tempo real
+            const searchInput = document.getElementById('newsSearchInput');
+            let searchTimeout;
+
+            searchInput.addEventListener('input', function() {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => {
+                    currentSearchTerm = this.value.trim();
+                    currentPage = 1; // Resetar para a primeira página
+                    applyFilters();
+                }, 300); // Delay de 300ms após a última digitação
+            });
+
+            // Configurar botão de busca
+            document.getElementById('newsSearchBtn').addEventListener('click', function() {
+                currentSearchTerm = searchInput.value.trim();
+                currentPage = 1; // Resetar para a primeira página
+                applyFilters();
+            });
+
+            // Permitir busca com Enter
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    currentSearchTerm = this.value.trim();
+                    currentPage = 1; // Resetar para a primeira página
+                    applyFilters();
+                }
+            });
+
+            // Configurar filtros da busca principal
+            document.querySelectorAll('.filter-tag').forEach(tag => {
+                tag.addEventListener('click', function() {
+                    // Remove active class from all tags
+                    document.querySelectorAll('.filter-tag').forEach(t => t.classList.remove('active'));
+                    // Add active class to clicked tag
+                    this.classList.add('active');
+
+                    // Aqui você pode adicionar lógica para filtrar outros conteúdos
+                    console.log('Filtro selecionado:', this.getAttribute('data-filter'));
+                });
+            });
+
+            // Efeito de scroll para as seções
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href && href.length > 1) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
+            });
+
+            // Observer para animação dos cards
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Aplicar observer aos cards de conteúdo
+            document.querySelectorAll('.content-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+
+            // Efeito no header ao scrollar
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('.header');
+                if (window.scrollY > 100) {
+                    header.style.background = 'rgba(46, 82, 102, 0.95)';
+                    header.style.backdropFilter = 'blur(10px)';
+                } else {
+                    header.style.background = 'linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%)';
+                    header.style.backdropFilter = 'none';
+                }
+            });
+
+            // Melhorias para menu mobile
+            const navbarToggler = document.querySelector('.navbar-toggler');
+            const navbarCollapse = document.querySelector('.navbar-collapse');
+
+            // Fechar menu ao clicar em um link
+            document.querySelectorAll('.navbar-nav .nav-link:not(.dropdown-toggle)').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navbarCollapse.classList.contains('show')) {
+                        navbarToggler.click();
+                    }
+                });
+            });
+
+            // Fechar menu ao clicar em dropdown items
+            document.querySelectorAll('.dropdown-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    if (navbarCollapse.classList.contains('show')) {
+                        navbarToggler.click();
+                    }
+                });
+            });
+
+            // Fechar ao clicar fora da navbar
+            document.addEventListener('click', function(event) {
+                const isClickInsideNavbar = document.querySelector('.navbar').contains(event.target);
+                const isNavbarToggler = event.target === navbarToggler || navbarToggler.contains(event.target);
+
+                if (!isClickInsideNavbar && !isNavbarToggler && navbarCollapse.classList.contains('show')) {
+                    navbarToggler.click();
+                }
+            });
+
+            // Efeito de loading nos botões
+            document.querySelectorAll('.btn').forEach(btn => {
+                if (!btn.classList.contains('crisis-btn')) {
+                    btn.addEventListener('click', function(e) {
+                        const originalText = this.innerHTML;
+                        this.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Carregando...';
+                        this.disabled = true;
+
+                        setTimeout(() => {
+                            this.innerHTML = originalText;
+                            this.disabled = false;
+                        }, 500);
+                    });
+                }
+            });
+
+            // Garantir que a página comece no topo
+            if ('scrollRestoration' in history) {
+                history.scrollRestoration = 'manual';
+            }
+
+            // Animar cards de conteúdo em sequência
+            const cards = document.querySelectorAll('.content-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+
+            console.log('Portal Mônada carregado com sucesso!');
+        });
+    </script>
+</body>
+</html>

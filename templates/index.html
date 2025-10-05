@@ -1,0 +1,561 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero fade-in">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8 hero-content">
+                <h1 class="slide-in">Portal Mônada</h1>
+                <p class="slide-in">Seu espaço dedicado à saúde mental e prevenção de comportamentos aditivos. Encontre recursos, apoio e informações confiáveis para uma vida mais equilibrada.</p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="check-in.html" class="btn btn-light btn-lg px-4">
+                        <i class="fas fa-search me-2"></i>Explorar Recursos
+                    </a>
+                    <a href="questionario.html" class="btn btn-outline-light btn-lg px-4">
+                        <i class="fas fa-info-circle me-2"></i>Saiba Mais
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center brain">
+                <i class="fas fa-brain" style="font-size: 8rem; opacity: 0.3;"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Search Section -->
+<section id="search" class="search-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card search-card">
+                    <h2 class="text-center mb-4">
+                        <i class="fas fa-search text-primary me-2"></i>
+                        Busque Informações e Recursos
+                    </h2>
+
+                    <div class="row g-3 mb-4">
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control search-input" placeholder="O que você está procurando? Ex: ansiedade, dependência química..." id="searchInput">
+                        </div>
+                        <div class="col-lg-4">
+                            <button class="btn search-btn w-100" onclick="performSearch()">
+                                <i class="fas fa-search me-2"></i>Buscar
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <small class="text-muted mb-2 d-block">Filtros rápidos:</small>
+                        <div class="d-flex flex-wrap gap-2">
+                            <button class="filter-tag active" data-filter="all">Todos</button>
+                            <button class="filter-tag" data-filter="primary">Prevenção</button>
+                            <button class="filter-tag" data-filter="alcohol">Álcool</button>
+                            <button class="filter-tag" data-filter="drugs">Outras Drogas</button>
+                            <button class="filter-tag" data-filter="gaming">Jogos Virtuais</button>
+                            <button class="filter-tag" data-filter="mental">Saúde Mental</button>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <small class="text-muted">
+                            <i class="fas fa-lightbulb me-1"></i>
+                            Dica: Use palavras-chave específicas para encontrar conteúdos mais direcionados
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- News Section -->
+<section id="news" class="news-section">
+    <div class="container">
+        <h2 class="section-title">Notícias e Atualizações</h2>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="news-search-card">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Buscar notícias..." id="newsSearchInput">
+                                <button class="btn btn-primary" type="button" id="newsSearchBtn">
+                                    <i class="fas fa-search me-1"></i> Buscar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <select class="form-select" id="newsSortSelect">
+                                <option value="newest">Mais recentes</option>
+                                <option value="oldest">Mais antigas</option>
+                                <option value="popular">Mais populares</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mt-3">
+                        <small class="text-muted mb-2 d-block">Filtrar por categoria:</small>
+                        <div class="d-flex flex-wrap">
+                            <button class="news-filter-btn active" data-category="all">Todas</button>
+                            <button class="news-filter-btn" data-category="prevention">Prevenção</button>
+                            <button class="news-filter-btn" data-category="treatment">Tratamento</button>
+                            <button class="news-filter-btn" data-category="research">Pesquisa</button>
+                            <button class="news-filter-btn" data-category="events">Eventos</button>
+                            <button class="news-filter-btn" data-category="alcohol">Álcool</button>
+                            <button class="news-filter-btn" data-category="drugs">Drogas</button>
+                            <button class="news-filter-btn" data-category="gaming">Jogos</button>
+                            <button class="news-filter-btn" data-category="mental-health">Saúde Mental</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4" id="newsContainer">
+            <!-- News items will be loaded here by JavaScript -->
+        </div>
+
+        <div class="pagination-container">
+            <nav aria-label="Navegação de notícias">
+                <ul class="pagination" id="newsPagination">
+                    <!-- Pagination will be generated by JavaScript -->
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<!-- Content Section -->
+<section id="content" class="content-section">
+    <div class="container">
+        <h2 class="section-title">Recursos em Destaque</h2>
+
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="card content-card">
+                    <div class="card-body p-4">
+                        <div class="card-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="card-title">Prevenção Primária</h3>
+                        <p class="card-text">Estratégias e recursos para prevenir o desenvolvimento de dependências e problemas de saúde mental antes que ocorram.</p>
+                        <a href="#" class="btn btn-primary-custom">Explorar <i class="fas fa-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="card content-card">
+                    <div class="card-body p-4">
+                        <div class="card-icon">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                        <h3 class="card-title">Identificação Precoce</h3>
+                        <p class="card-text">Ferramentas e informações para identificar sinais precoces de dependências e questões de saúde mental.</p>
+                        <a href="#" class="btn btn-primary-custom">Explorar <i class="fas fa-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="card content-card">
+                    <div class="card-body p-4">
+                        <div class="card-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <h3 class="card-title">Suporte e Tratamento</h3>
+                        <p class="card-text">Recursos para tratamento, reabilitação e suporte contínuo para indivíduos e famílias afetadas.</p>
+                        <a href="#" class="btn btn-primary-custom">Explorar <i class="fas fa-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="card content-card">
+                    <div class="card-body p-4">
+                        <div class="card-icon">
+                            <i class="fas fa-wine-glass-alt"></i>
+                        </div>
+                        <h3 class="card-title">Álcool e Drogas</h3>
+                        <p class="card-text">Informações especializadas sobre dependências químicas, seus efeitos e estratégias de prevenção e tratamento.</p>
+                        <a href="#" class="btn btn-primary-custom">Explorar <i class="fas fa-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="card content-card">
+                    <div class="card-body p-4">
+                        <div class="card-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h3 class="card-title">Jogos Virtuais</h3>
+                        <p class="card-text">Recursos sobre vício em jogos, uso saudável da tecnologia e estratégias para equilibrar o tempo digital.</p>
+                        <a href="#" class="btn btn-primary-custom">Explorar <i class="fas fa-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="card content-card">
+                    <div class="card-body p-4">
+                        <div class="card-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3 class="card-title">Saúde Mental</h3>
+                        <p class="card-text">Recursos abrangentes sobre bem-estar mental, transtornos psicológicos e estratégias de autocuidado.</p>
+                        <a href="#" class="btn btn-primary-custom">Explorar <i class="fas fa-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Auth Section -->
+<section class="auth-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card auth-card">
+                    <div class="card-body">
+                        <h3 class="mb-4">
+                            <i class="fas fa-user-circle text-primary me-2"></i>
+                            Personalize Sua Experiência
+                        </h3>
+                        <p class="text-muted mb-4">
+                            Crie uma conta para receber conteúdos personalizados, salvar recursos favoritos e acompanhar seu progresso.
+                        </p>
+                        <div class="d-flex flex-wrap justify-content-center gap-3">
+                            <button class="btn btn-primary-custom btn-lg">
+                                <i class="fas fa-user-plus me-2"></i>Criar Conta
+                            </button>
+                            <button class="btn btn-outline-custom btn-lg">
+                                <i class="fas fa-sign-in-alt me-2"></i>Fazer Login
+                            </button>
+                        </div>
+                        <p class="mt-3 small text-muted mb-0">
+                            <i class="fas fa-lock me-1"></i>
+                            Seus dados são protegidos e nunca compartilhados com terceiros
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery Section -->
+<section id="gallery" class="gallery-section">
+    <div class="container">
+        <h2 class="section-title mb-3">Galeria de Imagens</h2>
+        <p class="text-center mb-4">Explore nossa galeria de imagens sobre saúde mental e bem-estar</p>
+
+        <div class="gallery-container" id="galleryContainer">
+            <!-- Images will be loaded by JavaScript -->
+        </div>
+        <!-- Adicione esta div para a paginação -->
+        <div class="pagination-container mt-4">
+            <nav aria-label="Navegação da galeria">
+                <ul class="pagination justify-content-center" id="galleryPagination">
+                    <!-- Pagination will be generated by JavaScript -->
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+ <!-- Modal Gallery -->
+<div id="galleryModal" class="modal-gallery">
+    <span class="modal-close">&times;</span>
+    <div class="modal-content-gallery">
+        <img id="modalImage" class="modal-img" src="" alt="">
+        <p id="modalCaption" class="modal-caption"></p>
+    </div>
+</div>
+
+<!-- Guia de Serviços Section -->
+<section id="guia-servicos" class="services-section">
+    <div class="container">
+        <h2 class="section-title mb-3">Encontre Ajuda Profissional</h2>
+        <p class="text-center mb-4">Localize serviços de saúde mental próximos a você</p>
+
+        <div class="row">
+            <!-- Filtros -->
+            <div class="col-lg-4 mb-4">
+                <div class="card search-filter-card">
+                    <div class="card-body">
+                        <h4 class="filter-title mb-3">
+                            <i class="fas fa-filter me-2"></i>Filtrar Serviços
+                        </h4>
+
+                        <div class="mb-3">
+                            <label class="form-label">Localização:</label>
+                            <input type="text" id="localizacaoInput" class="form-control" placeholder="Digite sua cidade">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Tipo de Serviço:</label>
+                            <select id="tipoServicoSelect" class="form-select">
+                                <option value="todos">Todos</option>
+                                <option value="caps">CAPS</option>
+                                <option value="clinica">Clínicas Especializadas</option>
+                                <option value="hospital">Hospitais Psiquiátricos</option>
+                                <option value="online">Atendimento Online</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Especialidade:</label>
+                            <select id="especialidadeSelect" class="form-select">
+                                <option value="todos">Todas</option>
+                                <option value="dependencia-quimica">Dependência Química</option>
+                                <option value="saude-mental">Saúde Mental Adulta</option>
+                                <option value="infanto-juvenil">Infanto-Juvenil</option>
+                            </select>
+                        </div>
+
+                        <button id="buscarServicosBtn" class="btn btn-primary-custom w-100">
+                            <i class="fas fa-search me-2"></i>Buscar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resultados + Mapa -->
+            <div class="col-lg-8">
+                <div class="card map-card">
+                    <div class="card-body">
+                        <div id="map" style="height: 400px; border-radius: 10px;"></div>
+                    </div>
+                </div>
+
+                <div class="results-container mt-3" id="servicosResults">
+                    <!-- Resultados serão carregados aqui via JavaScript -->
+                </div>
+                <div class="pagination-container mt-4">
+                    <nav aria-label="Navegação de serviços">
+                        <ul class="pagination justify-content-center" id="servicosPagination">
+                            <!-- Pagination will be generated by JavaScript -->
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+ <!-- Seção de Depoimentos -->
+<section id="depoimentos" class="depoiments-section" style="background-color: var(--background-light);">
+    <div class="container">
+        <h2 class="section-title mb-3">Depoimentos</h2>
+        <p class="text-center mb-4">Histórias reais de pessoas que encontraram apoio através do Portal Mônada</p>
+
+        <!-- Filtros -->
+        <div class="row mb-4">
+            <div class="col-lg-12">
+                <div class="card search-filter-card">
+                    <div class="card-body">
+                        <div class="d-flex flex-wrap justify-content-center gap-2">
+                            <button class="filter-tag active" data-filter="all">Todos</button>
+                            <button class="filter-tag" data-filter="recovery">
+                                <i class="fas fa-heart me-1"></i>Recuperação
+                            </button>
+                            <button class="filter-tag" data-filter="treatment">
+                                <i class="fas fa-hand-holding-heart me-1"></i>Tratamento
+                            </button>
+                            <button class="filter-tag" data-filter="prevention">
+                                <i class="fas fa-shield-alt me-1"></i>Prevenção
+                            </button>
+                            <button class="filter-tag" data-filter="family">
+                                <i class="fas fa-users me-1"></i>Família
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Container de Depoimentos -->
+        <div class="row g-4" id="depoimentosContainer">
+            <!-- Depoimentos serão carregados aqui via JavaScript -->
+        </div>
+
+        <!-- Paginação -->
+        <div class="pagination-container mt-5">
+            <nav aria-label="Navegação de depoimentos">
+                <ul class="pagination justify-content-center" id="depoimentosPagination">
+                    <!-- Paginação será gerada aqui via JavaScript -->
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Formulário para enviar depoimento -->
+        <div class="row mt-3">
+            <div class="col-lg-8 mx-auto">
+                <div class="card auth-card">
+                    <div class="card-body">
+                        <h3 class="text-center mb-4">
+                            <i class="fas fa-edit me-2"></i>
+                            Compartilhe sua história
+                        </h3>
+                        <form id="depoimentoForm">
+                            <div class="mb-3">
+                                <label class="form-label">Seu nome (opcional)</label>
+                                <input type="text" class="form-control" placeholder="Como gostaria de ser identificado?">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Seu depoimento*</label>
+                                <textarea class="form-control" rows="4" placeholder="Compartilhe sua experiência..." required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Categoria</label>
+                                <select class="form-select">
+                                    <option value="recovery">Recuperação</option>
+                                    <option value="treatment">Tratamento</option>
+                                    <option value="prevention">Prevenção</option>
+                                    <option value="family">Família</option>
+                                </select>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary-custom">
+                                    <i class="fas fa-paper-plane me-2"></i>Enviar Depoimento
+                                </button>
+                            </div>
+                            <p class="small text-muted mt-3 mb-0">
+                                <i class="fas fa-lock me-1"></i>
+                                Seus dados são protegidos e publicados de forma anônima, se preferir.
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+ <!-- Seção de Agendamento Online -->
+<section id="agendamento" class="py-5 pt-0" style="background-color: #f8f9fa;">
+    <div class="container">
+        <h2 class="section-title mb-3">Agende sua Consulta</h2>
+        <p class="text-center mb-4">Encontre o profissional ideal para seu atendimento</p>
+        <div class="row">
+            <!-- Filtros -->
+            <div class="col-lg-3 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-filter me-2"></i>Filtros</h5>
+
+                        <div class="mb-3">
+                            <label class="form-label">Especialidade</label>
+                            <select class="form-select" id="especialidadeFilter">
+                                <option value="all">Todas</option>
+                                <option value="psicologo">Psicólogo</option>
+                                <option value="psiquiatra">Psiquiatra</option>
+                                <option value="terapeuta">Terapeuta</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Modalidade</label>
+                            <select class="form-select" id="modalidadeFilter">
+                                <option value="all">Todas</option>
+                                <option value="online">Online</option>
+                                <option value="presencial">Presencial</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Disponibilidade</label>
+                            <input type="date" class="form-control" id="dataFilter">
+                        </div>
+
+                        <button class="btn btn-primary w-100" id="aplicarFiltros">
+                            <i class="fas fa-search me-2"></i>Aplicar Filtros
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lista de Profissionais -->
+            <div class="col-lg-9">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h5 class="mb-0">Profissionais Disponíveis</h5>
+                            <div class="form-text">
+                                Mostrando <span id="profissionaisCount">0</span> de <span id="totalProfissionais">0</span>
+                            </div>
+                        </div>
+
+                        <!-- Lista de Profissionais -->
+                        <div id="profissionaisList" class="row g-3"></div>
+
+                        <!-- Paginação -->
+                        <nav class="mt-4" id="paginationContainer">
+                            <ul class="pagination justify-content-center" id="pagination"></ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal de Agendamento -->
+<div class="modal fade" id="agendamentoModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Agendar Consulta</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formAgendamento">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Profissional</label>
+                            <input type="text" class="form-control" id="modalProfissional" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Tipo de Consulta</label>
+                            <select class="form-select" id="modalTipoConsulta">
+                                <option value="online">Online</option>
+                                <option value="presencial">Presencial</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Data</label>
+                            <input type="date" class="form-control" id="modalData" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Horário</label>
+                            <select class="form-select" id="modalHorario" required>
+                                <option value="">Selecione um horário</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Observações</label>
+                        <textarea class="form-control" rows="3" id="modalObservacoes"></textarea>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary px-4">
+                            <i class="fas fa-calendar-check me-2"></i>Confirmar Agendamento
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
