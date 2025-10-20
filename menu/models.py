@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils import timezone
 import json
@@ -20,12 +21,20 @@ class Menu(models.Model):
     # basic fields
     title = models.CharField(max_length=100)
     url = models.SlugField(max_length=255)
-    icon = models.CharField(max_length=50)
+    icon = models.CharField(
+        max_length=50,
+        blank=True
+    )
     active = models.BooleanField(default=True)
     order = models.IntegerField(default=0)
 
     # Type and behavior
-    menu_type = models.CharField(max_length=100)
+    menu_type = models.CharField(
+        max_length=100,
+        choices=MenuType.choices,
+        default=MenuType.SEPARATOR,
+        verbose_name='Menu Type'
+    )
 
     # Self-referencing for submenus
     parent_menu = models.ForeignKey(
